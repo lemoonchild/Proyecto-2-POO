@@ -1,6 +1,7 @@
-public class AdministradorEvento {
+public class Administrador_Evento{
     private String Nombre;
     private String Documento_Identificacion;
+    private String Evento;
 
     public String getNombre() {
         return Nombre;
@@ -13,6 +14,11 @@ public class AdministradorEvento {
     }
     public void setDocumento_Identificacion(String documento_Identificacion) {
         Documento_Identificacion = documento_Identificacion;
+    }
+
+    public void CrearEvento(){
+        Evento eventonuevo = new Evento;
+
     }
     
 
