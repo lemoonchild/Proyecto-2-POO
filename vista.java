@@ -11,6 +11,40 @@ public class vista {
     Scanner scan = new Scanner(System.in);
 
     /**
+     * Muestra las posibles opciones de inicio que puede elegir y, por lo tanto,
+     * realizar, el usuario.
+     * 
+     * @return entero con la opción solicitada por el usuario
+     */
+    public int Inicio() {
+        System.out.println("\n¿Qué hará?");
+        System.out.println("1. Registrarse");
+        System.out.println("2. Iniciar sesión");
+        System.out.println("3. Salir\n");
+
+        return solicitarI(""); // Envia un entero con la opción del usuario.
+    }
+
+    /**
+     * Muestra las posibles opciones que puede elegir y, por lo tanto, realizar, el
+     * usuario. Se puede implementar al inicio de un While loop para mostrar
+     * consultar al usuario sobre sus decisiones para luego llamar a otras
+     * funciones.
+     * 
+     * @return entero con la opción solicitada por el usuario
+     */
+    public int Menu() {
+        System.out.println("\n¿Qué hará?");
+        System.out.println("1. Registrar horario");
+        System.out.println("2. Asignarse a un voluntariado");
+        System.out.println("3. Crear un nuevo programa de apoyo");
+        System.out.println("4. Ver horarios asignados");
+        System.out.println("5. Salir\n");
+
+        return solicitarI(""); // Envia un entero con la opción del usuario.
+    }
+
+    /**
      * Imprime una solicitud y recibe un dato tipo int
      * Evita una excepción -InputMismatchException- volviendo a solicitar el dato en
      * caso de que ocurra.
