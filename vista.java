@@ -17,7 +17,7 @@ public class vista {
      * @return entero con la opción solicitada por el usuario
      */
     public int Inicio() {
-        System.out.println("\n¿Qué hará?");
+        System.out.println("\nBienvenid@ ¿Qué hará?");
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesión");
         System.out.println("3. Salir\n");
