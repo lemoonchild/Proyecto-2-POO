@@ -6,9 +6,6 @@
  * Propósito de la clase: Guardar la información necesaria de cada evento creado por el tipo de usuario “Administrador de Evento”. 
  */
 
-
-package Model;
-
 public class Evento {
     
     private String eventName; 

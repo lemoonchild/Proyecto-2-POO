@@ -1,7 +1,6 @@
 public class Administrador_Evento{
     private String Nombre;
     private String Documento_Identificacion;
-    private String Evento;
 
     public String getNombre() {
         return Nombre;
@@ -17,7 +16,8 @@ public class Administrador_Evento{
     }
 
     public void CrearEvento(){
-        Evento eventonuevo = new Evento;
+        Evento evento1 = new Evento("",0,0,"");
+        
 
     }
     

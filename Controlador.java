@@ -1,6 +1,4 @@
 public class Controlador {
-    Usuario usuario;
-    Voluntario voluntario;
     Administrador_Evento Administrador_Evento;
 
     public void crear_usuario(){
