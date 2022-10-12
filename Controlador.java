@@ -1,5 +1,5 @@
+import java.util.InputMismatchException;
 public class Controlador {
-    Administrador_Evento Administrador_Evento;
     boolean ciclo = true;
      public void IniciarPrograma(vista vista1){
         ListaDeUsuarios listaDeUsuarios1 = new ListaDeUsuarios();
@@ -8,6 +8,10 @@ public class Controlador {
             if(vista1.solicitarI(null) == 1 ){
                 crear_usuario(vista1, listaDeUsuarios1);
             }
+            if(vista1.solicitarI(null) == 2){
+
+            }
+            
 
 
 
@@ -22,6 +26,7 @@ public class Controlador {
 
     public void crear_usuario(vista vista1,ListaDeUsuarios listaDeUsuarios1){
         vista1.TipoDeUsuarioCreado();
+        
         if(vista1.RespuestaI == 1){
             Voluntario voluntario1 = new Voluntario();
             vista1.CrearUsuarioVoluntario(voluntario1);
@@ -32,10 +37,14 @@ public class Controlador {
             vista1.CrearUsuarioAdmin(admin1);
             listaDeUsuarios1.UsuariosAdministrativos.add(admin1);
         }
-        }
+        
 
     }
-    public void Iniciar_Sesión(){
+    public void Iniciar_Sesión(Administrador_Evento admin1, vista vista1){
+
+
+
+
     }
     public void Cerrar_Sesión(){
     }

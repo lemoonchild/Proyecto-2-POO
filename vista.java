@@ -132,8 +132,28 @@ public class vista {
         admin1.setTypeUser(true);
         System.out.println("Felicidades has creado tu usuario con exito!");
         //Falso es un usuario Voluntario y Verdadero es un usuario Administrador.
+    }
+
+    public void IniciarSecion(ListaDeUsuarios listaDeUsuarios1){
+        System.out.println("¿Tu usuario es tipo: \n1.administrador \n2.voluntario?");
+        RespuestaI = scan.nextInt();
+        System.out.println("Escriba su nombre de usuario: ");
+        RespuestaS = scan.nextLine();
+        if(RespuestaI == 1){
+            for(int i = 0; i <= listaDeUsuarios1.UsuariosAdministrativos.size()-1;i++){
+                
+
+
+            }
+        }
+
 
         
+
+
+
+
+
 
 
     }
