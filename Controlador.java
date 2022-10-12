@@ -4,14 +4,16 @@ public class Controlador {
      public void IniciarPrograma(vista vista1){
         ListaDeUsuarios listaDeUsuarios1 = new ListaDeUsuarios();
         while(ciclo == true){
-            vista1.Inicio();
-            if(vista1.solicitarI(null) == 1 ){
+            int decidido = vista1.Inicio();
+            if(decidido == 1 ){ //Registrarse
                 crear_usuario(vista1, listaDeUsuarios1);
             }
-            if(vista1.solicitarI(null) == 2){
+            else if(decidido == 2){ //Inicio de sesión
 
             }
-            
+            else { //Salir
+                ciclo = false;
+            }
 
 
 
