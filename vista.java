@@ -11,6 +11,8 @@ public class vista {
     Scanner scan = new Scanner(System.in);
     String RespuestaS;
     int RespuestaI;
+    boolean AccesoVoluntario = false;
+    boolean AccesoAdmin = false;
 
     /**
      * Muestra las posibles opciones de inicio que puede elegir y, por lo tanto,
@@ -141,11 +143,38 @@ public class vista {
         RespuestaS = scan.nextLine();
         if(RespuestaI == 1){
             for(int i = 0; i <= listaDeUsuarios1.UsuariosAdministrativos.size()-1;i++){
-                
+                if(RespuestaS == listaDeUsuarios1.UsuariosAdministrativos.get(i).username){
+                    System.out.println("Escriba su contraseña: ");
+                    if(RespuestaS == listaDeUsuarios1.UsuariosAdministrativos.get(i).password){
+                        AccesoVoluntario = true;
+                    }
+                }
+                if(RespuestaS != listaDeUsuarios1.UsuariosAdministrativos.get(i).username){
 
-
+                }
+            }
+            if(AccesoVoluntario == false){
+                System.out.println("ERROR: El nombre de usuario o la contraseña no se encuntran en la base de datos");
+                System.out.println("Revise que eligio correctamente el tipo de usuario");
             }
         }
+        if(RespuestaI == 2){
+            for(int i = 0; i <= listaDeUsuarios1.UsuariosVoluntarios.size()-1;i++){
+                if(RespuestaS == listaDeUsuarios1.UsuariosVoluntarios.get(i).username){
+                    System.out.println("Escriba su contraseña: ");
+                    if(RespuestaS == listaDeUsuarios1.UsuariosVoluntarios.get(i).password){
+                        AccesoAdmin = true;
+                    }
+                }
+                if(RespuestaS != listaDeUsuarios1.UsuariosVoluntarios.get(i).username){
+
+                }
+            }
+            if(AccesoAdmin == false){
+                System.out.println("ERROR: El nombre de usuario o la contraseña no se encuntran en la base de datos");
+                System.out.println("Revise que eligio correctamente el tipo de usuario");
+            }
+
 
 
         
@@ -159,4 +188,6 @@ public class vista {
     }
 
      
+}
+
 }

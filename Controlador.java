@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 public class Controlador {
     boolean ciclo = true;
      public void IniciarPrograma(vista vista1){
@@ -9,7 +8,10 @@ public class Controlador {
                 crear_usuario(vista1, listaDeUsuarios1);
             }
             else if(decidido == 2){ //Inicio de sesión
-
+                vista1.IniciarSecion(listaDeUsuarios1);
+                if(vista1.AccesoAdmin == true || vista1.AccesoVoluntario == true){
+                    vista1.Menu();
+                }
             }
             else { //Salir
                 ciclo = false;
