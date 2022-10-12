@@ -7,14 +7,11 @@
  * una actividad o ser anfitriones de una. Permite guardar la información básica de cada usuario ingresado.
  */
 
-package Model;
-
-public class Usuario {
-    
-    private String username; 
-    private String password; 
-    private int DPI; 
-    private boolean typeUser;
+public class Usuario{
+    protected String username; 
+    protected String password; 
+    protected int DPI; 
+    protected boolean typeUser;
 
     
     /**
@@ -23,12 +20,7 @@ public class Usuario {
      * @param dPI documento de identificacion del usuario 
      * @param typeUser tipo de usuario ingresado = false/admin evento ; true/voluntario
      */
-    public Usuario(String username, String password, int dPI, boolean typeUser) {
-        this.username = username;
-        this.password = password;
-        DPI = dPI;
-        this.typeUser = typeUser;
-    }
+
 
     /**
      * Getters y Setters de los atributos del usuario 

@@ -9,6 +9,8 @@ import java.util.Scanner;
  */
 public class vista {
     Scanner scan = new Scanner(System.in);
+    String RespuestaS;
+    int RespuestaI;
 
     /**
      * Muestra las posibles opciones de inicio que puede elegir y, por lo tanto,
@@ -89,4 +91,52 @@ public class vista {
     public void MostrarMensaje(String text) {
         System.out.println("\n" + text);
     }
+
+    public void TipoDeUsuarioCreado(){
+        System.out.println("Escriba el tipo de nombre de usuario que desea tene:");
+        System.out.println("1. Usuario Voluntariado");
+        System.out.println("2. Usuario Administrativo"+"\n");
+        RespuestaI = scan.nextInt();
+    }
+
+    public void CrearUsuarioVoluntario(Voluntario voluntario1){
+        System.out.println("Escriba el nombre de usuario que desea tener: ");
+        RespuestaS = scan.next();
+        voluntario1.setUsername(RespuestaS);
+        System.out.println("Escriba la contraseña que desea tener: ");
+        RespuestaS = scan.next();
+        voluntario1.setPassword(RespuestaS);
+        System.out.println("Escriba su numero de DPI: ");
+        RespuestaI = scan.nextInt();
+        voluntario1.setDPI(RespuestaI);
+        voluntario1.setTypeUser(false);
+        System.out.println("Felicidades has creado tu usuario con exito!");
+        //Falso es un usuario Voluntario y Verdadero es un usuario Administrador.
+    }
+
+    public void CrearUsuarioAdmin(Administrador_Evento admin1){
+        System.out.println("Escriba el nombre de usuario que desea tener: ");
+        RespuestaS = scan.next();
+        admin1.setUsername(RespuestaS);
+        System.out.println("Escriba la contraseña que desea tener: ");
+        RespuestaS = scan.next();
+        admin1.setPassword(RespuestaS);
+        System.out.println("Escriba su numero de telefono: ");
+        RespuestaS = scan.next();
+        admin1.setNumeroDeTelefono(RespuestaS);
+        System.out.println("Escriba su primer nombre y apellido: ");
+        RespuestaS = scan.next();
+        RespuestaS.replaceAll(" ", "");
+        RespuestaS.toLowerCase();
+        admin1.setNombrePersona(RespuestaS);
+        admin1.setTypeUser(true);
+        System.out.println("Felicidades has creado tu usuario con exito!");
+        //Falso es un usuario Voluntario y Verdadero es un usuario Administrador.
+
+        
+
+
+    }
+
+     
 }
