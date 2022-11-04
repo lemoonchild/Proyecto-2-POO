@@ -1,18 +1,9 @@
+package Proyecto-2-POO;
+
 public class Administrador_Evento extends Usuario{
-    private String NumeroDeTelefono;
-    private String NombrePersona;
-
     
-
-
-
-
-
-    public void CrearEvento(){
-    }
-
-    public String getNumeroDeTelefono() {
-        return NumeroDeTelefono;
+    private String NumeroDeTelefono;
+    private String NombrePersona;        return NumeroDeTelefono;
     }
     public void setNumeroDeTelefono(String numeroDeTelefono) {
         NumeroDeTelefono = numeroDeTelefono;

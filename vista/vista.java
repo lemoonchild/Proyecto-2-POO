@@ -140,17 +140,15 @@ public class vista {
         System.out.println("¿Tu usuario es tipo: \n1.administrador \n2.voluntario?");
         RespuestaI = scan.nextInt();
         System.out.println("Escriba su nombre de usuario: ");
-        RespuestaS = scan.nextLine();
+        RespuestaS = scan.next();
         if(RespuestaI == 1){
             for(int i = 0; i <= listaDeUsuarios1.UsuariosAdministrativos.size()-1;i++){
-                if(RespuestaS == listaDeUsuarios1.UsuariosAdministrativos.get(i).username){
+                if(RespuestaS.equals(listaDeUsuarios1.UsuariosAdministrativos.get(i).username)){
                     System.out.println("Escriba su contraseña: ");
-                    if(RespuestaS == listaDeUsuarios1.UsuariosAdministrativos.get(i).password){
-                        AccesoVoluntario = true;
+                    RespuestaS = scan.next();
+                    if(RespuestaS.equals(listaDeUsuarios1.UsuariosAdministrativos.get(i).password)){
+                        AccesoAdmin = true;
                     }
-                }
-                if(RespuestaS != listaDeUsuarios1.UsuariosAdministrativos.get(i).username){
-
                 }
             }
             if(AccesoVoluntario == false){
@@ -160,17 +158,15 @@ public class vista {
         }
         if(RespuestaI == 2){
             for(int i = 0; i <= listaDeUsuarios1.UsuariosVoluntarios.size()-1;i++){
-                if(RespuestaS == listaDeUsuarios1.UsuariosVoluntarios.get(i).username){
+                if(RespuestaS.equals(listaDeUsuarios1.UsuariosVoluntarios.get(i).username)){
                     System.out.println("Escriba su contraseña: ");
-                    if(RespuestaS == listaDeUsuarios1.UsuariosVoluntarios.get(i).password){
-                        AccesoAdmin = true;
+                    if(RespuestaS.equals(listaDeUsuarios1.UsuariosVoluntarios.get(i).password)){
+                        AccesoVoluntario = true;
                     }
                 }
-                if(RespuestaS != listaDeUsuarios1.UsuariosVoluntarios.get(i).username){
-
-                }
+                
             }
-            if(AccesoAdmin == false){
+            if(AccesoAdmin == false|| AccesoVoluntario == false){
                 System.out.println("ERROR: El nombre de usuario o la contraseña no se encuntran en la base de datos");
                 System.out.println("Revise que eligio correctamente el tipo de usuario");
             }
