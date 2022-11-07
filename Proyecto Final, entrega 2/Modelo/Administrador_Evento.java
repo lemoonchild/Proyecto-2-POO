@@ -1,17 +1,28 @@
+/**
+ * @class Programación Orientada a Objetos 
+ * Proyecto 2 
+ * Propósito de la clase: Clase dependiente de usuario, cuenta con los datos necesarios para crear un 
+ * evento nuevo. Permite crear nuevos objetos de este tipo registrando lo requerido.
+ */
+
 package Modelo;
 
 public class Administrador_Evento extends Usuario {
     
-    private String NumeroDeTelefono;
+    private int NumeroDeTelefono;
     private String NombrePersona;
 
-    public void CrearEvento(){
-    }
+    public Administrador_Evento(String username, String password, int dPI, boolean typeUser, int numeroDeTelefono, String nombrePersona) {
+        super(username, password, dPI, typeUser);
 
-    public String getNumeroDeTelefono() {
+        this.NumeroDeTelefono = numeroDeTelefono;
+        this.NombrePersona = nombrePersona;
+
+    }
+    public int getNumeroDeTelefono() {
         return NumeroDeTelefono;
     }
-    public void setNumeroDeTelefono(String numeroDeTelefono) {
+    public void setNumeroDeTelefono(int numeroDeTelefono) {
         NumeroDeTelefono = numeroDeTelefono;
     }
     public String getNombrePersona() {
@@ -25,4 +36,3 @@ public class Administrador_Evento extends Usuario {
 
     
 }
-
