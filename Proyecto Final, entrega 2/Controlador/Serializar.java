@@ -1,3 +1,4 @@
+package Controlador;
 /*
  * 
  * Clase serializar
@@ -45,6 +46,7 @@ public class Serializar {
     public static <tipo> tipo leer(File Porleer) throws IOException, ClassNotFoundException {
         FileInputStream lector = new FileInputStream(Porleer); // Convierte los datos en el documento a un stream.
         try (ObjectInputStream leedor = new ObjectInputStream(lector)) { // Recibe los datos del stream
+            @SuppressWarnings("unchecked")
             tipo objeto = (tipo) leedor.readObject(); // Los guarda nuevamente como objetos
             return objeto;
         }
