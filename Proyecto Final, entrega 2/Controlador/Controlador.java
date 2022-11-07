@@ -87,15 +87,20 @@ public class Controlador {
      *                  los datos
      */
     public void LeerDatos(File docV, File docA, ListaDeUsuarios lUsuarios) {
-        try {
-            lUsuarios.setUsuariosVoluntarios(Serializar.leer(docV));
-            lUsuarios.setUsuariosAdministrativos(Serializar.leer(docA));
-        } catch (IOException e) {
-            lUsuarios.setUsuariosVoluntarios(new ArrayList<Voluntario>());
-            lUsuarios.setUsuariosAdministrativos(new ArrayList<Administrador_Evento>());
-        } catch (ClassNotFoundException e) {
+        if (lUsuarios != null) {
+            try {
+                lUsuarios.setUsuariosVoluntarios(Serializar.leer(docV));
+                lUsuarios.setUsuariosAdministrativos(Serializar.leer(docA));
+            } catch (IOException e) {
+                lUsuarios.setUsuariosVoluntarios(new ArrayList<Voluntario>());
+                lUsuarios.setUsuariosAdministrativos(new ArrayList<Administrador_Evento>());
+            } catch (ClassNotFoundException e) {
 
+            } catch (java.lang.NullPointerException e) {
+
+            }
         }
+
     }
 
     /**
@@ -139,22 +144,16 @@ public class Controlador {
         try {
             if (docA.createNewFile()) {
                 System.out.println("Se ha creado: " + docA.getName());
+            }
+            if (docV.createNewFile()) {
+                System.out.println("Se ha creado: " + docV.getName());
             } else { // Leer datos si el archivo existe
-                LeerDatos(docA, null, lDeUsuarios);
+                LeerDatos(docV, docA, lDeUsuarios);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try {
-            if (docV.createNewFile()) {
-                System.out.println("Se ha creado: " + docV.getName());
-            } else { // Leer datos si el archivo existe
-                LeerDatos(null, docV, lDeUsuarios);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }

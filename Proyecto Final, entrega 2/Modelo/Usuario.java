@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  * @author Madeline Nahomy Castro Morales
  * @class Programación Orientada a Objetos
