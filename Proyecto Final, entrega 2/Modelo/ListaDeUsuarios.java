@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListaDeUsuarios implements Serializable {
+    
     public ArrayList<Administrador_Evento> UsuariosAdministrativos = new ArrayList<Administrador_Evento>();
     public ArrayList<Voluntario> UsuariosVoluntarios = new ArrayList<Voluntario>();
 
