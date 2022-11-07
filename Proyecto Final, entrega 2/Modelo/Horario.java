@@ -1,3 +1,10 @@
+/**
+ * @class Programación Orientada a Objetos 
+ * Proyecto 2 
+ * Propósito de la clase: Esta clase va a estar ligada con la clase Usuario, cada usuario tendrá su 
+ * propio horario que será modificado dependiendo de la información que esté agregue.
+ */
+
 package Modelo;
 
 public class Horario {
