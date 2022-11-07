@@ -1,3 +1,10 @@
+/**
+ * @class Programación Orientada a Objetos 
+ * Proyecto 2 
+ * Propósito de la clase: Guardar la información necesaria de cada evento 
+ * creado por el tipo de usuario “Administrador de Evento”. 
+ */
+
 package Modelo;
 
 public class Evento {
