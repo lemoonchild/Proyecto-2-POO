@@ -1,17 +1,12 @@
+/**
+ * @class Programación Orientada a Objetos 
+ * Proyecto 2 
+ * Propósito de la clase: Clase padre de los distintos tipos de usuarios que podrán ingresar al programa con el propósito de registrarse a 
+ * una actividad o ser anfitriones de una. Permite guardar la información básica de cada usuario ingresado.
+ */
 package Modelo;
 
 import java.io.Serializable;
-
-/**
- * @author Madeline Nahomy Castro Morales
- * @class Programación Orientada a Objetos
- * @carnet 22473
- *         Proyecto 2
- *         Propósito de la clase: Clase padre de los distintos tipos de usuarios
- *         que podrán ingresar al programa con el propósito de registrarse a
- *         una actividad o ser anfitriones de una. Permite guardar la
- *         información básica de cada usuario ingresado.
- */
 
 public class Usuario implements Serializable {
     protected String username;
@@ -23,14 +18,18 @@ public class Usuario implements Serializable {
      * @param username nombre de usuario
      * @param password contraseña del usuario
      * @param dPI      documento de identificacion del usuario
-     * @param typeUser tipo de usuario ingresado = false/admin evento ;
-     *                 true/voluntario
+     * @param typeUser tipo de usuario ingresado = false/admin evento true/voluntario
      */
-
+    public Usuario(String username, String password, int dPI, boolean typeUser) {
+        this.username = username;
+        this.password = password;
+        DPI = dPI;
+        this.typeUser = typeUser;
+    }
+    
     /**
      * Getters y Setters de los atributos del usuario
      */
-
     public String getUsername() {
         return username;
     }
