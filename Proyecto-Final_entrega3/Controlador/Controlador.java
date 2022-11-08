@@ -22,7 +22,7 @@ public class Controlador {
     public void IniciarPrograma(vista vista1) throws Exception {
 
         ListaDeUsuarios listaDeUsuarios1 = new ListaDeUsuarios();
-        AbrirDoc(doc_administradores, doc_voluntarios, listaDeUsuarios1);
+        AbrirDoc(doc_voluntarios, doc_administradores, listaDeUsuarios1);
 
         while (ciclo == true) {
             int decidido = vista1.Inicio();
@@ -138,19 +138,25 @@ public class Controlador {
     /**
      * Crea un nuevo archivo o lee los datos del que fue creado antes.
      * 
-     * @param doc
+     * @param docV
+     * @param docA
+     * @param lDeUsuarios
      * @throws Exception
      */
-    public void AbrirDoc(File docA, File docV, ListaDeUsuarios lDeUsuarios) throws Exception {
+    public void AbrirDoc(File docV, File docA, ListaDeUsuarios lDeUsuarios) throws Exception {
         vista view = new vista();
         try {
-            if (docA.createNewFile()) {
+            if (docA.createNewFile() && docV.createNewFile()) { // Ambos archivos son creados
+                view.MostrarMensaje("Se ha creado: " + docA.getName() + " y " + docV.getName());
+            } else if (docV.exists() && docA.createNewFile()) { // Se crea un nuevo archivo de administradores
                 view.MostrarMensaje("Se ha creado: " + docA.getName());
-            }
-            if (docV.createNewFile()) {
+                LeerDatos(docV, docA, lDeUsuarios); // se leen los datos del archivo de voluntarios
+            } else if (docA.exists() && docV.createNewFile()) { // Se crea un nuevo archivo de voluntarios
                 view.MostrarMensaje("Se ha creado: " + docV.getName());
-            } else { // Leer datos si el archivo existe
+                LeerDatos(docV, docA, lDeUsuarios); // se leen los datos del archivo de administradores
+            } else { // Leer datos si ambos archivo existe
                 LeerDatos(docV, docA, lDeUsuarios);
+                view.MostrarMensaje("Se han leído los datos de: " + docA.getName() + " y " + docV.getName());
             }
         } catch (IOException e) {
             e.printStackTrace();
