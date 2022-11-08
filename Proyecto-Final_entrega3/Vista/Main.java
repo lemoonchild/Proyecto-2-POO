@@ -8,10 +8,9 @@ package Vista;
 
 import Controlador.Controlador;
 
-
 public class Main {
-    public static void main (String [ ] args) {
-       
+    public static void main(String[] args) throws Exception {
+
         vista vista1 = new vista();
         Controlador controlador1 = new Controlador();
         controlador1.IniciarPrograma(vista1);

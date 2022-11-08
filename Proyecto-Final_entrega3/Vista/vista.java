@@ -6,6 +6,7 @@
  */
 
 package Vista;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -21,11 +22,12 @@ public class vista {
     public boolean AccesoVoluntario = false;
     public boolean AccesoAdmin = false;
 
-    public ArrayList<Evento> eventosCreados = new ArrayList<Evento>(); 
+    public ArrayList<Evento> eventosCreados = new ArrayList<Evento>();
 
     /**
      * Muestra las posibles opciones de inicio que puede elegir y, por lo tanto,
      * realizar, el usuario.
+     * 
      * @return entero con la opción solicitada por el usuario
      */
     public int Inicio() {
@@ -103,19 +105,19 @@ public class vista {
         System.out.println("\n" + text);
     }
 
-    public int TipoDeUsuarioCreado(){
+    public int TipoDeUsuarioCreado() {
 
-        System.out.println("Escriba el tipo de nombre de usuario que desea tener: "); 
-    int tipoUsuario = solicitarI("\t1. Usuario Voluntariado \n\t2. Usuario Administrativo\n");
-    
+        System.out.println("Escriba el tipo de nombre de usuario que desea tener: ");
+        int tipoUsuario = solicitarI("\t1. Usuario Voluntariado \n\t2. Usuario Administrativo\n");
+
         return tipoUsuario;
 
     }
 
-    public void CrearUsuarioVoluntario(Voluntario voluntario1){
+    public void CrearUsuarioVoluntario(Voluntario voluntario1) {
 
         String nombre = solicitarS("Escriba el nombre de usuario que desea tener: ");
-        voluntario1.setUsername(nombre); 
+        voluntario1.setUsername(nombre);
         String password = solicitarS("Escriba la contraseña que desea tener: ");
         voluntario1.setPassword(password);
         int DPI = solicitarI("Escriba su numero de DPI: ");
@@ -123,16 +125,16 @@ public class vista {
         voluntario1.setTypeUser(false);
 
         MostrarMensaje("¡Felicidades has creado tu usuario con exito!");
-        //Falso es un usuario Voluntario y Verdadero es un usuario Administrador.
+        // Falso es un usuario Voluntario y Verdadero es un usuario Administrador.
     }
 
-    public void CrearUsuarioAdmin(Administrador_Evento admin1){
+    public void CrearUsuarioAdmin(Administrador_Evento admin1) {
 
         String usuario = solicitarS("Escriba el nombre de usuario que desea tener: ");
         admin1.setUsername(usuario);
         String password = solicitarS("Escriba la contraseña que desea tener: ");
         admin1.setPassword(password);
-        int numT = solicitarI("Escriba su numero de telefono: "); 
+        int numT = solicitarI("Escriba su numero de telefono: ");
         admin1.setNumeroDeTelefono(numT);
         String nombre = solicitarS("Escriba su primer nombre y apellido: ");
         nombre.replaceAll(" ", "");
@@ -141,48 +143,51 @@ public class vista {
         admin1.setTypeUser(true);
 
         MostrarMensaje("Felicidades has creado tu usuario con exito!");
-        //Falso es un usuario Voluntario y Verdadero es un usuario Administrador.
+        // Falso es un usuario Voluntario y Verdadero es un usuario Administrador.
     }
 
-    public void IniciarSesion(ListaDeUsuarios listaDeUsuarios1){
+    public void IniciarSesion(ListaDeUsuarios listaDeUsuarios1) {
 
         int tipoUsuario = solicitarI("¿Tu usuario es tipo: \n1. Administrador \n2. Voluntario?");
         String usuario = solicitarS("Escriba su nombre de usuario: ");
-        if(tipoUsuario == 1){
-            for(int i = 0; i <= listaDeUsuarios1.getUsuariosAdministrativos().size()-1;i++){
-                if(usuario.equals(listaDeUsuarios1.getUsuariosAdministrativos().get(i).getUsername())){
+        if (tipoUsuario == 1) {
+            for (int i = 0; i <= listaDeUsuarios1.getUsuariosAdministrativos().size() - 1; i++) {
+                if (usuario.equals(listaDeUsuarios1.getUsuariosAdministrativos().get(i).getUsername())) {
                     String password = solicitarS("Escriba su contraseña: ");
-                    if(password.equals(listaDeUsuarios1.getUsuariosAdministrativos().get(i).getPassword())){
+                    if (password.equals(listaDeUsuarios1.getUsuariosAdministrativos().get(i).getPassword())) {
                         AccesoAdmin = true;
                     }
                 }
             }
-            if(AccesoVoluntario == false){
+            if (AccesoAdmin == false) {
                 System.out.println("ERROR: El nombre de usuario o la contraseña no se encuntran en la base de datos");
                 System.out.println("Revise que eligio correctamente el tipo de usuario");
             }
         }
-        if(tipoUsuario == 2){
-            for(int i = 0; i <= listaDeUsuarios1.getUsuariosVoluntarios().size()-1;i++){
-                if(usuario.equals(listaDeUsuarios1.getUsuariosVoluntarios().get(i).getUsername())){
+        if (tipoUsuario == 2) {
+            for (int i = 0; i <= listaDeUsuarios1.getUsuariosVoluntarios().size() - 1; i++) {
+                if (usuario.equals(listaDeUsuarios1.getUsuariosVoluntarios().get(i).getUsername())) {
                     String password = solicitarS("Escriba su contraseña: ");
-                    if(password.equals(listaDeUsuarios1.getUsuariosVoluntarios().get(i).getPassword())){
+                    if (password.equals(listaDeUsuarios1.getUsuariosVoluntarios().get(i).getPassword())) {
                         AccesoVoluntario = true;
                     }
                 }
-                
+
             }
-            if(AccesoAdmin == false || AccesoVoluntario == false){
+            if (AccesoVoluntario == false) {
                 System.out.println("ERROR: El nombre de usuario o la contraseña no se encuntran en la base de datos");
                 System.out.println("Revise que eligio correctamente el tipo de usuario");
             }
         }
     }
+
     /**
-     * Muestra el menpu para que el administrador agregue la información necesaria para la creación del evento 
-     * @param evento Clase evento 
+     * Muestra el menpu para que el administrador agregue la información necesaria
+     * para la creación del evento
+     * 
+     * @param evento Clase evento
      */
-    public void menuEvento(Evento evento){
+    public void menuEvento(Evento evento) {
 
         System.out.println("\nCreación de Eventos para Administrador\n");
 

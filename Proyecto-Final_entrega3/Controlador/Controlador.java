@@ -19,9 +19,11 @@ public class Controlador {
     File doc_administradores = new File("voluntarios.txt");
     boolean ciclo = true;
 
-    public void IniciarPrograma(vista vista1) {
+    public void IniciarPrograma(vista vista1) throws Exception {
 
         ListaDeUsuarios listaDeUsuarios1 = new ListaDeUsuarios();
+        AbrirDoc(doc_administradores, doc_voluntarios, listaDeUsuarios1);
+
         while (ciclo == true) {
             int decidido = vista1.Inicio();
             if (decidido == 1) { // Registrarse
