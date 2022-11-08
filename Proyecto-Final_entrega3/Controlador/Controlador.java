@@ -31,7 +31,28 @@ public class Controlador {
             } else if (decidido == 2) { // Inicio de sesión
                 vista1.IniciarSesion(listaDeUsuarios1);
                 if (vista1.AccesoAdmin == true || vista1.AccesoVoluntario == true) {
-                    vista1.Menu();
+                    Boolean ciclo1 = true;
+                    while (ciclo1) {
+                        int menuP = vista1.Menu();
+                        if (menuP == 1) { // Registrar horario
+                            vista1.MostrarMensaje("Función en proceso...");
+
+                        } else if (menuP == 2) { // Asignarse a un voluntariado
+                            vista1.MostrarMensaje("Función en proceso...");
+
+                        } else if (menuP == 3) { // Crear un nuevo programa de apoyo
+                            vista1.menuEvento();
+
+                        } else if (menuP == 4) { // Ver horarios asignados
+                            vista1.MostrarMensaje("Función en proceso...");
+
+                        } else if (menuP == 5) { // Salir
+                            ciclo1 = false;
+                        } else {
+                            vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 5\n");
+                        }
+
+                    }
                 }
             } else { // Salir
                 GuardarDatos(doc_voluntarios, doc_administradores, listaDeUsuarios1);
@@ -121,12 +142,13 @@ public class Controlador {
      * @throws Exception
      */
     public void AbrirDoc(File docA, File docV, ListaDeUsuarios lDeUsuarios) throws Exception {
+        vista view = new vista();
         try {
             if (docA.createNewFile()) {
-                System.out.println("Se ha creado: " + docA.getName());
+                view.MostrarMensaje("Se ha creado: " + docA.getName());
             }
             if (docV.createNewFile()) {
-                System.out.println("Se ha creado: " + docV.getName());
+                view.MostrarMensaje("Se ha creado: " + docV.getName());
             } else { // Leer datos si el archivo existe
                 LeerDatos(docV, docA, lDeUsuarios);
             }

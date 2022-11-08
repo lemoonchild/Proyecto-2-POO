@@ -187,20 +187,19 @@ public class vista {
      * 
      * @param evento Clase evento
      */
-    public void menuEvento(Evento evento) {
+    public void menuEvento() {
 
         System.out.println("\nCreación de Eventos para Administrador\n");
 
         String nombre = solicitarS("¿Cuál es el nombre del evento a crear?");
-        evento.setEventName(nombre);
+
         int maxU = solicitarI("¿Cuál es a cantidad de usuarios permitidos?");
-        evento.setAmountOfUsers(maxU);
+
         int fecha = solicitarI("¿Qué fecha será el evento?");
-        evento.setHourOfDay(fecha);
+
         String description = solicitarS("Escriba la descripción del evento: ");
         description.replaceAll(" ", "");
         description.toLowerCase();
-        evento.setDescriptionEvent(description);
 
         Evento eventoCreado = new Evento(nombre, maxU, fecha, description);
 
