@@ -137,29 +137,29 @@ public class Controlador {
 
     /**
      * Crea un nuevo archivo o lee los datos del que fue creado antes.
+     * ~~Puede cambiar en las siguientes versiones según sea necesario~~
      * 
-     * @param docV
-     * @param docA
-     * @param lDeUsuarios
+     * @param docV        voluntarios registrados
+     * @param docA        administradores registrados
+     * @param lDeUsuarios instancia de la clase ListaDeUsuarios para tener control
+     *                    del registro
      * @throws Exception
      */
     public void AbrirDoc(File docV, File docA, ListaDeUsuarios lDeUsuarios) throws Exception {
         vista view = new vista();
-        try {
-            if (docA.createNewFile() && docV.createNewFile()) { // Ambos archivos son creados
-                view.MostrarMensaje("Se ha creado: " + docA.getName() + " y " + docV.getName());
-            } else if (docV.exists() && docA.createNewFile()) { // Se crea un nuevo archivo de administradores
-                view.MostrarMensaje("Se ha creado: " + docA.getName());
-                LeerDatos(docV, docA, lDeUsuarios); // se leen los datos del archivo de voluntarios
-            } else if (docA.exists() && docV.createNewFile()) { // Se crea un nuevo archivo de voluntarios
-                view.MostrarMensaje("Se ha creado: " + docV.getName());
-                LeerDatos(docV, docA, lDeUsuarios); // se leen los datos del archivo de administradores
-            } else { // Leer datos si ambos archivo existe
-                LeerDatos(docV, docA, lDeUsuarios);
-                view.MostrarMensaje("Se han leído los datos de: " + docA.getName() + " y " + docV.getName());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        Boolean nuevo_admin = docA.createNewFile();
+        Boolean nuevo_vol = docV.createNewFile();
+        if (nuevo_admin && nuevo_vol) { // Ambos archivos son creados
+            view.MostrarMensaje("Se ha creado: " + docA.getName() + " y " + docV.getName());
+        } else if (!nuevo_vol && nuevo_admin) { // Se crea un nuevo archivo de administradores
+            view.MostrarMensaje("Se ha creado: " + docA.getName());
+            LeerDatos(docV, docA, lDeUsuarios); // se leen los datos del archivo de voluntarios
+        } else if (!nuevo_admin && nuevo_vol) { // Se crea un nuevo archivo de voluntarios
+            view.MostrarMensaje("Se ha creado: " + docV.getName());
+            LeerDatos(docV, docA, lDeUsuarios); // se leen los datos del archivo de administradores
+        } else { // Leer datos si ambos archivo existe
+            LeerDatos(docV, docA, lDeUsuarios);
+            view.MostrarMensaje("Se han leído los datos de: " + docA.getName() + " y " + docV.getName());
         }
 
     }
