@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import Modelo.Administrador_Evento;
+import Modelo.Horario;
 import Modelo.ListaDeUsuarios;
 import Modelo.Voluntario;
 import Vista.vista;
@@ -20,9 +21,12 @@ public class Controlador {
     boolean ciclo = true;
 
     public void IniciarPrograma(vista vista1) throws Exception {
-
+        
         ListaDeUsuarios listaDeUsuarios1 = new ListaDeUsuarios();
         AbrirDoc(doc_voluntarios, doc_administradores, listaDeUsuarios1);
+        
+        Horario horario1 = new Horario();
+        horario1.CrearHorario();
 
         while (ciclo == true) {
             int decidido = vista1.Inicio();
@@ -33,6 +37,7 @@ public class Controlador {
                 if (vista1.AccesoAdmin == true || vista1.AccesoVoluntario == true) {
                     Boolean ciclo1 = true;
                     while (ciclo1) {
+
                         int menuP = vista1.Menu();
                         if (menuP == 1) { // Registrar horario
                             vista1.MostrarMensaje("Función en proceso...");
@@ -54,6 +59,8 @@ public class Controlador {
 
                     }
                 }
+            
+
             } else { // Salir
                 GuardarDatos(doc_voluntarios, doc_administradores, listaDeUsuarios1);
                 ciclo = false;
