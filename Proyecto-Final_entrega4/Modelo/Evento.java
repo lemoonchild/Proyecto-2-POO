@@ -13,19 +13,20 @@ public class Evento {
     private int hourOfDay;
     private int amountOfUsers;
     private String descriptionEvent;
+    private int bloqueTiempo; 
 
-    
     /**
      * @param eventName nombre del evento creado 
      * @param hourOfDay hora del día en el que se desarrollará el evento 
      * @param amountOfUsers cantidad de usuarios por cada evento 
      * @param descriptionEvent pequeña descripcion del evento 
      */
-    public Evento(String eventName, int hourOfDay, int amountOfUsers, String descriptionEvent) {
+    public Evento(String eventName, int hourOfDay, int amountOfUsers, String descriptionEvent, int bloqueTiempo) {
         this.eventName = eventName;
         this.hourOfDay = hourOfDay;
         this.amountOfUsers = amountOfUsers;
         this.descriptionEvent = descriptionEvent;
+        this.bloqueTiempo = bloqueTiempo;
     }
 
     /**
@@ -55,7 +56,12 @@ public class Evento {
     public void setDescriptionEvent(String descriptionEvent) {
         this.descriptionEvent = descriptionEvent;
     } 
-
+    public int getBloqueTiempo() {
+        return bloqueTiempo;
+    }
+    public void setBloqueTiempo(int bloqueTiempo) {
+        this.bloqueTiempo = bloqueTiempo;
+    }
     @Override
     public String toString() {
         String text = ""; 
