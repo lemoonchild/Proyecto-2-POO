@@ -228,5 +228,23 @@ public class Controlador {
             e.printStackTrace();
         }
     }
+       /**
+     * @param evento Ingresa el evento creado y lo asigna según al horario deseado  
+     */
+    public void asignarEvento(Evento evento){
+
+        //ArrayList Horario
+        for (int i = 0; i < Horario.Horario.size(); i++) { //Acceder a los días de la semana
+            int posicion = evento.getHourOfDay(); 
+            for (int j = 0; j < Horario.Horario.get(posicion).size(); j++) {//Acceder a los horarios correspondientes a cada día
+                int bloqueHorario = evento.getBloqueTiempo(); 
+                for (int k = 0; k < Horario.Horario.get(posicion).get(bloqueHorario).size(); k++) { //Acceder a los eventos correspondientes a los horarios del día
+                    Horario.Horario.get(posicion).get(bloqueHorario).add(evento); 
+                    
+                }
+            }
+        }
+
+    }  
 
 }
