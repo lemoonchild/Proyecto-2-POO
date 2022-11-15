@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import Modelo.Administrador_Evento;
+import Modelo.Evento;
 import Modelo.Horario;
 import Modelo.ListaDeUsuarios;
 import Modelo.Voluntario;
@@ -26,9 +27,8 @@ public class Controlador {
         ListaDeUsuarios listaDeUsuarios1 = new ListaDeUsuarios();
         AbrirDoc(doc_voluntarios, doc_administradores, listaDeUsuarios1);
 
-        Horario horario1 = new Horario();
-        horario1.CrearHorario();
-        AbrirHorarios(doc_horarios, horario1);
+        Horario.CrearHorario();
+        AbrirHorarios(doc_horarios, Horario.Horario);
 
         while (ciclo == true) {
             int decidido = vista1.Inicio();
@@ -64,7 +64,7 @@ public class Controlador {
 
             } else { // Salir
                 GuardarDatos(doc_voluntarios, doc_administradores, listaDeUsuarios1);
-                GuardarHorario(doc_horarios, horario1);
+                GuardarHorario(doc_horarios, Horario.Horario);
                 ciclo = false;
             }
 
@@ -180,7 +180,7 @@ public class Controlador {
      * @param doc
      * @throws Exception
      */
-    public void AbrirHorarios(File docH, Horario horarios) throws Exception {
+    public void AbrirHorarios(File docH, ArrayList<ArrayList<ArrayList<Evento>>> horarios) throws Exception {
         try {
             if (docH.createNewFile()) {
                 System.out.println("Se ha creado: " + docH.getName());
@@ -197,11 +197,11 @@ public class Controlador {
      * 
      * @param doc
      */
-    public void LeerDatos_Horario(File doc, Horario horario) {
+    public void LeerDatos_Horario(File doc, ArrayList<ArrayList<ArrayList<Evento>>> horario) {
         try {
             horario = Serializar.leer(doc);
         } catch (IOException e) {
-            horario = new Horario();
+            //horario = new Horario();
         } catch (ClassNotFoundException e) {
 
         }
@@ -215,7 +215,7 @@ public class Controlador {
      * @param documento
      * @param objeto
      */
-    public <tipo> void GuardarHorario(File documento, Horario horario) {
+    public <tipo> void GuardarHorario(File documento, ArrayList<ArrayList<ArrayList<Evento>>> horario) {
         try {
             @SuppressWarnings("unchecked")
             tipo objeto = (tipo) horario;
@@ -228,7 +228,7 @@ public class Controlador {
             e.printStackTrace();
         }
     }
-       /**
+    /**
      * @param evento Ingresa el evento creado y lo asigna según al horario deseado  
      */
     public void asignarEvento(Evento evento){
@@ -245,6 +245,5 @@ public class Controlador {
             }
         }
 
-    }  
-
+    } 
 }
