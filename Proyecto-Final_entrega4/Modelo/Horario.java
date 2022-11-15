@@ -15,14 +15,14 @@ public class Horario implements Serializable {
     private Evento evento_reistrado;
     ArrayList<ArrayList<ArrayList<Evento>>> Horario = new ArrayList<ArrayList<ArrayList<Evento>>>();
 
-    public void CrearHorario() {
+    public static void CrearHorario() {
         // Creacion de Dias
         ArrayList<ArrayList<Evento>> Lunes = new ArrayList<ArrayList<Evento>>();
         ArrayList<ArrayList<Evento>> Martes = new ArrayList<ArrayList<Evento>>();
         ArrayList<ArrayList<Evento>> Miercoles = new ArrayList<ArrayList<Evento>>();
         ArrayList<ArrayList<Evento>> Jueves = new ArrayList<ArrayList<Evento>>();
         ArrayList<ArrayList<Evento>> Viernes = new ArrayList<ArrayList<Evento>>();
-        // Creacion De bloques Lunes
+        // Creacion De Bloques Lunes
         ArrayList<Evento> Bloque1 = new ArrayList<Evento>();
         Lunes.add(Bloque1);
         Martes.add(Bloque1);
