@@ -187,7 +187,7 @@ public class vista {
      * 
      * @param evento Clase evento
      */
-    public void menuEvento() {
+    public Evento menuEvento() {
 
         System.out.println("\nCreación de Eventos para Administrador\n");
 
@@ -195,17 +195,21 @@ public class vista {
 
         int maxU = solicitarI("¿Cuál es a cantidad de usuarios permitidos?");
 
-        int fecha = solicitarI("¿Qué fecha será el evento?");
-
         String description = solicitarS("Escriba la descripción del evento: ");
         description.replaceAll(" ", "");
         description.toLowerCase();
 
-        Evento eventoCreado = new Evento(nombre, maxU, fecha, description);
-
-        eventosCreados.add(eventoCreado);
+        System.out.println("¿Qué día de la semana prefiere el evento?");
+        int fecha = solicitarI("1. Lunes\n2. Martes\n3. Miércoles\n4. Jueves\n5. Viernes");
+        
+        System.out.println("¿Qué intervalo de tiempo quiere agregar sua actividad?");
+        int bloque = solicitarI("1. 6AM-8AM\n2. 9AM-11AM\n 3.12PM-2PM\n4. 3PM-5PM\n6. 6PM-7PM"); 
+        
+        Evento eventoCreado = new Evento(nombre, fecha, maxU, description, bloque);
 
         MostrarMensaje("¡El evento ha sido guardado!");
+
+        return eventoCreado;
     }
 
 }
