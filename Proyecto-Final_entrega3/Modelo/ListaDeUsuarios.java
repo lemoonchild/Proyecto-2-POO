@@ -14,6 +14,7 @@ public class ListaDeUsuarios{
 
     public ArrayList<Voluntario> UsuariosVoluntarios = new ArrayList<Voluntario>();
     
+
     public ArrayList<Administrador_Evento> getUsuariosAdministrativos() {
         return UsuariosAdministrativos;
     }

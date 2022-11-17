@@ -6,11 +6,13 @@
  */
 
 package Modelo;
+import java.util.*;
 
 public class Voluntario extends Usuario {
 
     private int NumeroDeTelefono;
     private String NombrePersona;
+    public ArrayList<Evento> EventosAsignados = new ArrayList<Evento>();
 
     public Voluntario(String username, String password, int dPI, boolean typeUser, int numeroTelefono, String nombrePersona) {
         super(username, password, dPI, typeUser);
@@ -31,5 +33,12 @@ public class Voluntario extends Usuario {
     public void setNombrePersona(String nombrePersona) {
         NombrePersona = nombrePersona;
     }
+    public ArrayList<Evento> getEventosAsignados() {
+        return EventosAsignados;
+    }
+    public void setEventosAsignados(ArrayList<Evento> eventosAsignados) {
+        EventosAsignados = eventosAsignados;
+    }
+    
 }
 

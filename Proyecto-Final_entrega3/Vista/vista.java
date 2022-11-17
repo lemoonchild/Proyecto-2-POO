@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import Modelo.Administrador_Evento;
 import Modelo.Evento;
+import Modelo.Horario;
 import Modelo.ListaDeUsuarios;
 import Modelo.Voluntario;
 
@@ -21,9 +22,9 @@ public class vista {
     Scanner scan = new Scanner(System.in);
     public boolean AccesoVoluntario = false;
     public boolean AccesoAdmin = false;
+    public String NombreTemporal;
 
     public ArrayList<Evento> eventosCreados = new ArrayList<Evento>();
-
     /**
      * Muestra las posibles opciones de inicio que puede elegir y, por lo tanto,
      * realizar, el usuario.
@@ -51,12 +52,25 @@ public class vista {
     public int Menu() {
         System.out.println("\n¿Qué hará?");
         System.out.println("1. Registrar horario");
-        System.out.println("2. Asignarse a un voluntariado");
-        System.out.println("3. Crear un nuevo programa de apoyo");
-        System.out.println("4. Ver horarios asignados");
-        System.out.println("5. Salir\n");
+        System.out.println("2. Crear un nuevo programa de apoyo");
+        System.out.println("3. Ver Eventos Creados Por ti.");
+        System.out.println("4. Salir\n");
 
         return solicitarI(""); // Envia un entero con la opción del usuario.
+    }
+    public int Asignarse(){
+        System.out.println("Elija el numero evento para asignarse: ");
+        return solicitarI("");
+        
+    }
+    public int Menus(){
+        System.out.println("\n¿Qué hará?");
+        System.out.println("1. Asignarse a un voluntariado");
+        System.out.println("2. Ver horarios asignados");
+        System.out.println("3. Salir\n");
+
+
+        return solicitarI("");
     }
 
     /**
@@ -156,6 +170,7 @@ public class vista {
                     String password = solicitarS("Escriba su contraseña: ");
                     if (password.equals(listaDeUsuarios1.getUsuariosAdministrativos().get(i).getPassword())) {
                         AccesoAdmin = true;
+                        NombreTemporal = usuario;
                     }
                 }
             }
@@ -170,6 +185,7 @@ public class vista {
                     String password = solicitarS("Escriba su contraseña: ");
                     if (password.equals(listaDeUsuarios1.getUsuariosVoluntarios().get(i).getPassword())) {
                         AccesoVoluntario = true;
+                        NombreTemporal = usuario;
                     }
                 }
 
@@ -187,25 +203,24 @@ public class vista {
      * 
      * @param evento Clase evento
      */
-    public void menuEvento() {
+    public void menuEvento(Horario horario1) {
 
         System.out.println("\nCreación de Eventos para Administrador\n");
 
         String nombre = solicitarS("¿Cuál es el nombre del evento a crear?");
 
-        int maxU = solicitarI("¿Cuál es a cantidad de usuarios permitidos?");
+        int Horas = solicitarI("¿Cuanas horas va a durar su evento?");
 
-        int fecha = solicitarI("¿Qué fecha será el evento?");
+        int maxU = solicitarI("¿Cuál es a cantidad de usuarios permitidos?");
 
         String description = solicitarS("Escriba la descripción del evento: ");
         description.replaceAll(" ", "");
         description.toLowerCase();
 
-        Evento eventoCreado = new Evento(nombre, maxU, fecha, description);
-
-        eventosCreados.add(eventoCreado);
-
-        MostrarMensaje("¡El evento ha sido guardado!");
+        String fechas = solicitarS("Escriba la fecha del evento (Dia/M/Año)");
+        Evento eventoCreado = new Evento(nombre,Horas,maxU,description,fechas,NombreTemporal);
+        horario1.CreadosRecientemente.add(eventoCreado);
+        MostrarMensaje("¡El evento ha sido guardado!\n");
     }
 
 }

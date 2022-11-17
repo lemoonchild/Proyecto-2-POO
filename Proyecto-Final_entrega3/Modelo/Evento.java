@@ -7,12 +7,18 @@
 
 package Modelo;
 
+import java.util.*;
 public class Evento {
     
     private String eventName; 
     private int hourOfDay;
     private int amountOfUsers;
     private String descriptionEvent;
+    private String Fecha;
+    private String NombreCreador;
+    public ArrayList<Voluntario> VoluntariosInscritos = new ArrayList<Voluntario>();
+
+    
 
     
     /**
@@ -21,11 +27,13 @@ public class Evento {
      * @param amountOfUsers cantidad de usuarios por cada evento 
      * @param descriptionEvent pequeña descripcion del evento 
      */
-    public Evento(String eventName, int hourOfDay, int amountOfUsers, String descriptionEvent) {
+    public Evento(String eventName, int hourOfDay, int amountOfUsers, String descriptionEvent,String Fecha,String NombreCreador) {
         this.eventName = eventName;
         this.hourOfDay = hourOfDay;
         this.amountOfUsers = amountOfUsers;
         this.descriptionEvent = descriptionEvent;
+        this.Fecha = Fecha;
+        this.NombreCreador = NombreCreador;
     }
 
     /**
@@ -55,12 +63,39 @@ public class Evento {
     public void setDescriptionEvent(String descriptionEvent) {
         this.descriptionEvent = descriptionEvent;
     } 
+    
 
     @Override
     public String toString() {
         String text = ""; 
         text = "\tNombre del evento: " + eventName + "\n\tHorario: " + hourOfDay + "\n\tCantidad total de usuarios: " + amountOfUsers + 
-        "\n\tDescripción del usuario: " + descriptionEvent; 
+        "\n\tDescripción del usuario: " + descriptionEvent +"\n\tFecha: " +Fecha;
         return text; 
     }
+
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String fecha) {
+        Fecha = fecha;
+    }
+
+    public String getNombreCreador() {
+        return NombreCreador;
+    }
+
+    public void setNombreCreador(String nombreCreador) {
+        NombreCreador = nombreCreador;
+    }
+
+    public ArrayList<Voluntario> getVoluntariosInscritos() {
+        return VoluntariosInscritos;
+    }
+
+    public void setVoluntariosInscritos(ArrayList<Voluntario> voluntariosInscritos) {
+        VoluntariosInscritos = voluntariosInscritos;
+    }
+
+    
 }

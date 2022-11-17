@@ -16,6 +16,7 @@ import Modelo.Voluntario;
 import Vista.vista;
 
 public class Controlador {
+
     File doc_voluntarios = new File("voluntarios.txt");
     File doc_administradores = new File("voluntarios.txt");
     boolean ciclo = true;
@@ -26,38 +27,59 @@ public class Controlador {
         AbrirDoc(doc_voluntarios, doc_administradores, listaDeUsuarios1);
         
         Horario horario1 = new Horario();
-        horario1.CrearHorario();
-
+        
         while (ciclo == true) {
             int decidido = vista1.Inicio();
             if (decidido == 1) { // Registrarse
                 crear_usuario(vista1, listaDeUsuarios1);
             } else if (decidido == 2) { // Inicio de sesión
+                vista1.AccesoAdmin = false;
+                vista1.AccesoVoluntario = false;
                 vista1.IniciarSesion(listaDeUsuarios1);
-                if (vista1.AccesoAdmin == true || vista1.AccesoVoluntario == true) {
+                if (vista1.AccesoAdmin == true ) {
                     Boolean ciclo1 = true;
                     while (ciclo1) {
-
                         int menuP = vista1.Menu();
                         if (menuP == 1) { // Registrar horario
                             vista1.MostrarMensaje("Función en proceso...");
-
-                        } else if (menuP == 2) { // Asignarse a un voluntariado
+                            horario1.PublicarHorario();
+                            vista1.MostrarMensaje("Se han publicado correctamente tus eventos");
+                        }  else if (menuP == 2) { // Crear un nuevo programa de apoyo
+                            vista1.menuEvento(horario1);
+                        }   else if(menuP == 3){ // Mostrar Eventos Publicados
                             vista1.MostrarMensaje("Función en proceso...");
-
-                        } else if (menuP == 3) { // Crear un nuevo programa de apoyo
-                            vista1.menuEvento();
-
-                        } else if (menuP == 4) { // Ver horarios asignados
-                            vista1.MostrarMensaje("Función en proceso...");
-
-                        } else if (menuP == 5) { // Salir
+                            horario1.VerEventosCreador(vista1);
+                            }else if (menuP == 4) { // Salir
                             ciclo1 = false;
                         } else {
-                            vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 5\n");
+                            vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 4\n");
                         }
 
                     }
+                }
+                if(vista1.AccesoVoluntario == true){
+                    Boolean ciclo1 = true;
+                    while (ciclo1) {
+                    int menuP = vista1.Menus();
+
+                    if (menuP == 1) { // Asignarse a un voluntariado
+                        vista1.MostrarMensaje("Función en proceso...");
+                        horario1.Asignarse(listaDeUsuarios1, vista1);
+
+                    }
+                    else if (menuP == 2) { // Ver horarios asignados
+                        vista1.MostrarMensaje("Función en proceso...");
+                        horario1.VerHorarioAsignados(vista1, listaDeUsuarios1);
+
+                    } 
+                    else if (menuP == 3) { // Salir
+                        ciclo1 = false;
+                    }
+                    else {
+                        vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 3\n");
+                    }
+                    }
+                    
                 }
             
 

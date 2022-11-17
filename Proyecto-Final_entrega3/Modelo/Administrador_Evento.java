@@ -6,12 +6,14 @@
  */
 
 package Modelo;
+import java.util.*;
 
 public class Administrador_Evento extends Usuario {
     
     private int NumeroDeTelefono;
     private String NombrePersona;
-
+    public ArrayList<Evento> eventosCreados = new ArrayList<Evento>();
+    
     public Administrador_Evento(String username, String password, int dPI, boolean typeUser, int numeroDeTelefono, String nombrePersona) {
         super(username, password, dPI, typeUser);
 
