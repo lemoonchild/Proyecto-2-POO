@@ -19,17 +19,17 @@ public class Horario implements Serializable {
     public ArrayList<Evento> CreadosRecientemente = new ArrayList<Evento>();
     public ArrayList<Evento> Horarios = new ArrayList<Evento>();
 
-    public void PublicarHorario() {
+    public void PublicarHorario(vista vista1) {
         int x = CreadosRecientemente.size();
         if (x != 0) {
             for (int i = 0; i <= CreadosRecientemente.size() - 1; i++) {
                 Horarios.add(CreadosRecientemente.get(i));
                 CreadosRecientemente.remove(i);
             }
-
+            vista1.MostrarMensaje("Se han publicado correctamente tu  eventos al horario general-");
         }
         if (x == 0) {
-            System.out.println("No has creado un evento para publicar");
+            vista1.MostrarMensaje("No has creado un evento para publicar");
         }
 
     }
@@ -108,6 +108,20 @@ public class Horario implements Serializable {
             }
         }
 
+    }
+
+    public void EliminarHorario(vista vista1){
+        vista1.MostrarMensaje("Esta funcion eliminara todos los eventos que tengas en tu horario personal");
+        vista1.MostrarMensaje("Estas Seguro Que quieres continuar? 1. Si, 2. No");
+        int Respuesta = vista1.Eliminar();
+        if(Respuesta == 1){
+            for(int e = 0; e <= CreadosRecientemente.size()-1;e++){
+                CreadosRecientemente.remove(e);
+            }
+            vista1.MostrarMensaje("Se han eliminado correctamente todos los eventos en tu horario personal");
+            vista1.MostrarMensaje("Recuerda  que al registrar un horario, este no se podra quitar a menos que se hable con un desarrollador.");
+        }
+        
     }
 
     public Evento getEvento_reistrado() {

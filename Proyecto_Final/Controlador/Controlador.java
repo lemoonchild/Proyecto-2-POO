@@ -44,14 +44,17 @@ public class Controlador {
                         int menuP = vista1.Menu();
                         if (menuP == 1) { // Registrar horario
                             vista1.MostrarMensaje("Función en proceso...");
-                            horario1.PublicarHorario();
-                            vista1.MostrarMensaje("Se han publicado correctamente tus eventos");
+                            horario1.PublicarHorario(vista1);
                         } else if (menuP == 2) { // Crear un nuevo programa de apoyo
                             vista1.menuEvento(horario1);
-                        } else if (menuP == 3) { // Mostrar Eventos Publicados
+                        } else if (menuP == 3){//Eliminar Todos Los eventos de tu horario Personal.
+                            vista1.MostrarMensaje("Función en proceso...");
+                            horario1.EliminarHorario(vista1);
+                        }
+                        else if (menuP == 4) { // Mostrar Eventos Publicados
                             vista1.MostrarMensaje("Función en proceso...");
                             horario1.VerEventosCreador(vista1);
-                        } else if (menuP == 4) { // Salir
+                        } else if (menuP == 5) { // Salir
                             ciclo1 = false;
                         } else {
                             vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 4\n");

@@ -52,9 +52,10 @@ public class vista {
     public int Menu() {
         System.out.println("\n¿Qué hará?");
         System.out.println("1. Registrar horario");
-        System.out.println("2. Crear un nuevo programa de apoyo");
-        System.out.println("3. Ver Eventos Creados Por ti.");
-        System.out.println("4. Salir\n");
+        System.out.println("2. Crear un nuevo programa de apoyo en horario personal.");
+        System.out.println("3. Eliminar Horario Personal");
+        System.out.println("4. Ver Eventos Creados Por ti.");
+        System.out.println("5. Salir\n");
 
         return solicitarI(""); // Envia un entero con la opción del usuario.
     }
@@ -62,6 +63,10 @@ public class vista {
         System.out.println("Elija el numero evento para asignarse: ");
         return solicitarI("");
         
+    }
+
+    public int Eliminar(){
+        return solicitarI("");
     }
     public int Menus(){
         System.out.println("\n¿Qué hará?");
