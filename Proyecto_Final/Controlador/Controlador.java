@@ -28,7 +28,7 @@ public class Controlador {
         AbrirDoc(doc_voluntarios, doc_administradores, listaDeUsuarios1);
 
         Horario horario1 = new Horario();
-        horario1 = AbrirHorarios(doc_administradores, horario1);
+        horario1 = AbrirHorarios(doc_horarios, horario1);
 
         while (ciclo == true) {
             int decidido = vista1.Inicio();
@@ -83,7 +83,7 @@ public class Controlador {
 
             } else { // Salir
                 GuardarDatos(doc_voluntarios, doc_administradores, listaDeUsuarios1);
-                GuardarHorario(doc_administradores, horario1);
+                GuardarHorario(doc_horarios, horario1);
                 ciclo = false;
             }
 
@@ -199,11 +199,13 @@ public class Controlador {
      * @throws Exception
      */
     public Horario AbrirHorarios(File docH, Horario horario) throws Exception {
+        vista view = new vista();
         Horario temporal = new Horario();
         try {
             if (docH.createNewFile()) {
                 System.out.println("Se ha creado: " + docH.getName());
             } else { // Leer datos si el archivo existe
+                view.MostrarMensaje("Se han leído los datos de: " + docH.getName());
                 temporal = LeerDatos_Horario(docH, horario);
             }
         } catch (IOException e) {
@@ -220,6 +222,7 @@ public class Controlador {
      */
     public Horario LeerDatos_Horario(File doc, Horario horario) {
         try {
+
             horario = Serializar.leer(doc);
         } catch (IOException e) {
             // horario = new Horario();
@@ -239,10 +242,12 @@ public class Controlador {
      * @param objeto
      */
     public <tipo> void GuardarHorario(File documento, Horario horario) {
+        vista view = new vista();
         try {
             @SuppressWarnings("unchecked")
             tipo objeto = (tipo) horario;
             Serializar.escribir(documento, objeto);
+            view.MostrarMensaje("Datos guardados en " + documento.getName());
 
         } catch (IOException e) {
             e.printStackTrace();

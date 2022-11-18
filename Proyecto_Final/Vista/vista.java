@@ -25,6 +25,7 @@ public class vista {
     public String NombreTemporal;
 
     public ArrayList<Evento> eventosCreados = new ArrayList<Evento>();
+
     /**
      * Muestra las posibles opciones de inicio que puede elegir y, por lo tanto,
      * realizar, el usuario.
@@ -32,8 +33,8 @@ public class vista {
      * @return entero con la opción solicitada por el usuario
      */
     public int Inicio() {
-
-        System.out.println("\nBienvenid@ ¿Qué hará?");
+        System.out.println("¡Bienvenid@ a H&H");
+        System.out.println("\n¿Qué hará?");
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesión");
         System.out.println("3. Salir\n");
@@ -58,17 +59,18 @@ public class vista {
 
         return solicitarI(""); // Envia un entero con la opción del usuario.
     }
-    public int Asignarse(){
+
+    public int Asignarse() {
         System.out.println("Elija el numero evento para asignarse: ");
         return solicitarI("");
-        
+
     }
-    public int Menus(){
+
+    public int Menus() {
         System.out.println("\n¿Qué hará?");
         System.out.println("1. Asignarse a un voluntariado");
         System.out.println("2. Ver horarios asignados");
         System.out.println("3. Salir\n");
-
 
         return solicitarI("");
     }
@@ -217,8 +219,8 @@ public class vista {
         description.replaceAll(" ", "");
         description.toLowerCase();
 
-        String fechas = solicitarS("Escriba la fecha del evento (Dia/M/Año)");
-        Evento eventoCreado = new Evento(nombre,Horas,maxU,description,fechas,NombreTemporal);
+        String fechas = solicitarS("Escriba la fecha del evento (DD/MM/AA)");
+        Evento eventoCreado = new Evento(nombre, Horas, maxU, description, fechas, NombreTemporal);
         horario1.CreadosRecientemente.add(eventoCreado);
         MostrarMensaje("¡El evento ha sido guardado!\n");
     }

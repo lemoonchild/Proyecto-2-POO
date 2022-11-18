@@ -36,20 +36,22 @@ public class Horario implements Serializable {
 
     public void Asignarse(ListaDeUsuarios listaDeUsuarios1, vista vista1) {
         if (Horarios.size() != 0) {
-            for (int l = 0; l <= Horarios.size() - 1; l++) {
-                vista1.MostrarMensaje("\nEvento Numero: " + l + ".");
-                vista1.MostrarMensaje("Nombre Del Evento: " + Horarios.get(l).getEventName());
-                vista1.MostrarMensaje("Horas de duracion del evento: " + Horarios.get(l).getHourOfDay());
-                vista1.MostrarMensaje("Descripcion Del Evento: " + Horarios.get(l).getDescriptionEvent());
-                vista1.MostrarMensaje("Fecha del evento: " + Horarios.get(l).getFecha());
+            for (int l = 1; l <= Horarios.size() - 1; l++) {
+                vista1.MostrarMensaje("\nEvento # " + l + ".");
+                vista1.MostrarMensaje("- Nombre Del evento: " + Horarios.get(l).getEventName());
+                vista1.MostrarMensaje("- Horas de duracion del evento: " + Horarios.get(l).getHourOfDay());
+                vista1.MostrarMensaje("- Descripcion Del evento: " + Horarios.get(l).getDescriptionEvent());
+                vista1.MostrarMensaje("- Fecha del evento: " + Horarios.get(l).getFecha());
             }
             int asig = vista1.Asignarse();
-            for (int h = 0; h <= listaDeUsuarios1.UsuariosVoluntarios.size() - 1; h++) {
+            for (int h = 1; h <= listaDeUsuarios1.UsuariosVoluntarios.size() - 1; h++) {
                 if (vista1.NombreTemporal.equals(listaDeUsuarios1.UsuariosVoluntarios.get(h).username)) {
-                    listaDeUsuarios1.UsuariosVoluntarios.get(h).EventosAsignados.add(Horarios.get(asig));
+                    listaDeUsuarios1.UsuariosVoluntarios.get(h - 1).EventosAsignados.add(Horarios.get(asig));
                     int temporal = Horarios.get(asig).getAmountOfUsers() + 1;
                     Horarios.get(asig).setAmountOfUsers(temporal);
-                    vista1.MostrarMensaje("Te has Asignado de manera exitosa.");
+                    vista1.MostrarMensaje("Te has asignado de manera exitosa.");
+                } else {
+                    vista1.MostrarMensaje("¡Ese evento no ha sido creado!");
                 }
             }
         }
