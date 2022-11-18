@@ -18,16 +18,18 @@ import Vista.vista;
 public class Controlador {
 
     File doc_voluntarios = new File("voluntarios.txt");
-    File doc_administradores = new File("voluntarios.txt");
+    File doc_administradores = new File("administradores.txt");
+    File doc_horarios = new File("horarios.txt");
     boolean ciclo = true;
 
     public void IniciarPrograma(vista vista1) throws Exception {
-        
+
         ListaDeUsuarios listaDeUsuarios1 = new ListaDeUsuarios();
         AbrirDoc(doc_voluntarios, doc_administradores, listaDeUsuarios1);
-        
+
         Horario horario1 = new Horario();
-        
+        horario1 = AbrirHorarios(doc_administradores, horario1);
+
         while (ciclo == true) {
             int decidido = vista1.Inicio();
             if (decidido == 1) { // Registrarse
@@ -36,7 +38,7 @@ public class Controlador {
                 vista1.AccesoAdmin = false;
                 vista1.AccesoVoluntario = false;
                 vista1.IniciarSesion(listaDeUsuarios1);
-                if (vista1.AccesoAdmin == true ) {
+                if (vista1.AccesoAdmin == true) {
                     Boolean ciclo1 = true;
                     while (ciclo1) {
                         int menuP = vista1.Menu();
@@ -44,12 +46,12 @@ public class Controlador {
                             vista1.MostrarMensaje("Función en proceso...");
                             horario1.PublicarHorario();
                             vista1.MostrarMensaje("Se han publicado correctamente tus eventos");
-                        }  else if (menuP == 2) { // Crear un nuevo programa de apoyo
+                        } else if (menuP == 2) { // Crear un nuevo programa de apoyo
                             vista1.menuEvento(horario1);
-                        }   else if(menuP == 3){ // Mostrar Eventos Publicados
+                        } else if (menuP == 3) { // Mostrar Eventos Publicados
                             vista1.MostrarMensaje("Función en proceso...");
                             horario1.VerEventosCreador(vista1);
-                            }else if (menuP == 4) { // Salir
+                        } else if (menuP == 4) { // Salir
                             ciclo1 = false;
                         } else {
                             vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 4\n");
@@ -57,34 +59,31 @@ public class Controlador {
 
                     }
                 }
-                if(vista1.AccesoVoluntario == true){
+                if (vista1.AccesoVoluntario == true) {
                     Boolean ciclo1 = true;
                     while (ciclo1) {
-                    int menuP = vista1.Menus();
+                        int menuP = vista1.Menus();
 
-                    if (menuP == 1) { // Asignarse a un voluntariado
-                        vista1.MostrarMensaje("Función en proceso...");
-                        horario1.Asignarse(listaDeUsuarios1, vista1);
+                        if (menuP == 1) { // Asignarse a un voluntariado
+                            vista1.MostrarMensaje("Función en proceso...");
+                            horario1.Asignarse(listaDeUsuarios1, vista1);
 
-                    }
-                    else if (menuP == 2) { // Ver horarios asignados
-                        vista1.MostrarMensaje("Función en proceso...");
-                        horario1.VerHorarioAsignados(vista1, listaDeUsuarios1);
+                        } else if (menuP == 2) { // Ver horarios asignados
+                            vista1.MostrarMensaje("Función en proceso...");
+                            horario1.VerHorarioAsignados(vista1, listaDeUsuarios1);
 
-                    } 
-                    else if (menuP == 3) { // Salir
-                        ciclo1 = false;
+                        } else if (menuP == 3) { // Salir
+                            ciclo1 = false;
+                        } else {
+                            vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 3\n");
+                        }
                     }
-                    else {
-                        vista1.MostrarMensaje("Cuidado, escoge una opción del 1 al 3\n");
-                    }
-                    }
-                    
+
                 }
-            
 
             } else { // Salir
                 GuardarDatos(doc_voluntarios, doc_administradores, listaDeUsuarios1);
+                GuardarHorario(doc_administradores, horario1);
                 ciclo = false;
             }
 
@@ -191,6 +190,66 @@ public class Controlador {
             view.MostrarMensaje("Se han leído los datos de: " + docA.getName() + " y " + docV.getName());
         }
 
+    }
+
+    /**
+     * Crea un nuevo archivo o lee los datos del que fue creado antes.
+     * 
+     * @param doc
+     * @throws Exception
+     */
+    public Horario AbrirHorarios(File docH, Horario horario) throws Exception {
+        Horario temporal = new Horario();
+        try {
+            if (docH.createNewFile()) {
+                System.out.println("Se ha creado: " + docH.getName());
+            } else { // Leer datos si el archivo existe
+                temporal = LeerDatos_Horario(docH, horario);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return temporal;
+    }
+
+    /**
+     * Utiliza las funciones en serializar para leer los datos del documento dado.
+     * 
+     * @param doc
+     */
+    public Horario LeerDatos_Horario(File doc, Horario horario) {
+        try {
+            horario = Serializar.leer(doc);
+        } catch (IOException e) {
+            // horario = new Horario();
+        } catch (ClassNotFoundException e) {
+
+        }
+
+        return horario;
+    }
+
+    /**
+     * Utiliza la función en serializar para guardar, los datos recibidos, en un
+     * documento.
+     * 
+     * @param <tipo>
+     * @param documento
+     * @param objeto
+     */
+    public <tipo> void GuardarHorario(File documento, Horario horario) {
+        try {
+            @SuppressWarnings("unchecked")
+            tipo objeto = (tipo) horario;
+            Serializar.escribir(documento, objeto);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
